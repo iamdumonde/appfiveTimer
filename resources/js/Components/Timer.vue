@@ -1,5 +1,5 @@
 <script setup>
-import { reactive } from "vue";
+import { reactive, onMounted, onUnmounted } from "vue";
 
 // defineProps([
 //     'quiz', 
@@ -12,11 +12,11 @@ let state = reactive({
     min: duration - 1,
     secondes: 59,
     cent: 99,
-    intervalID: "",
+    timeoutID: "",
 });
 
 function startQuizz() {
-    state.intervalID = setInterval(() => {
+    state.timeoutID = setTimeout(() => {
         if (state.min > -1) {
             state.cent--;
             if (state.cent === 0) {
@@ -27,14 +27,38 @@ function startQuizz() {
                 state.min--;
             }
         } else if (state.min <= -1) {
-            clearInterval(state.intervalID);
+            clearTimeout(state.timeoutID);
             state.min = 0;
             state.cent = 0;
             state.secondes = 0;
-            console.log('clearInterval');
+            // console.log('clearInterval');
         }
-    }, 0, 1);
+        startQuizz();
+    }, 0.1);
 }
+
+
+// function startQuizz() {
+//     state.timeoutID = setTimeout(() => {
+//         if (state.min > -1) {
+//             state.cent--;
+//             if (state.cent === 0) {
+//                 state.cent = 99;
+//                 state.secondes--;
+//             } else if (state.secondes === 0) {
+//                 state.secondes = 60;
+//                 state.min--;
+//             }
+//         } else if (state.min <= -1) {
+//             clearTimeout(state.timeoutID);
+//             state.min = 0;
+//             state.cent = 0;
+//             state.secondes = 0;
+//             // console.log('clearInterval');
+//         }
+//         startQuizz();
+//     }, 0.1);
+// }
 
 function doubleNum(number) {
     if (number < 10) {
@@ -44,6 +68,19 @@ function doubleNum(number) {
     }
 }
 </script>
+
+<!-- <style scoped>
+.blinking {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+</style> -->
 
 <template>
     <div class="p-6 flex space-x-2">
@@ -56,14 +93,14 @@ function doubleNum(number) {
                     <small class="ml-2 text-sm text-gray-600">{{ new Date(quiz.created_at).toLocaleString() }}</small>
                 </div>
             </div>
-            <div class="showChrono">
-                <span >
+            <div class="schowChrono flex flex-col items-center">
+                <span class="text-3xl mb-4 timer">
                     Affiche moi le chrono : {{ doubleNum(state.min) }} : {{ doubleNum(state.secondes) }} : {{
                         doubleNum(state.cent) }}
                 </span>
             </div>
 
-            <button @click="startQuizz(0)" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Chrono</button>
+            <button @click="startQuizz" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Chrono</button>
         </div>
 
     </div>
