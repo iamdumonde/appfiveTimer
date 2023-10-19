@@ -33,6 +33,8 @@ const form = useForm({
                     class="form-select my-2 px-4 py-3 rounded-md"
                     name="" id=""> 
                     <option value="" desabled>Choisir</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
                     <option value="10">10</option>
                     <option value="15">15</option>
                     <option value="20">20</option>
