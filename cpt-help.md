@@ -1,3 +1,61 @@
+### input range
+Pour personnaliser l'apparence d'un élément `input` de type `range`, vous pouvez utiliser des propriétés CSS. Voici quelques-unes des propriétés les plus couramment utilisées pour styliser un input range :
+
+1. **`width`** : Définit la largeur de l'élément.
+2. **`height`** : Définit la hauteur de l'élément.
+3. **`background-color`** : Définit la couleur de fond de l'élément.
+4. **`border`** : Définit les bordures de l'élément.
+5. **`border-radius`** : Définit le rayon des coins de l'élément.
+6. **`outline`** : Définit la bordure autour de l'élément lorsqu'il est en surbrillance.
+7. **`box-shadow`** : Ajoute une ombre à l'élément.
+8. **`color`** : Définit la couleur du texte.
+9. **`font-size`** : Définit la taille de la police.
+10. **`padding`** : Définit l'espacement à l'intérieur de l'élément.
+
+Voici un exemple de CSS pour styliser un input range :
+
+```css
+input[type="range"] {
+  width: 100%;
+  height: 20px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #333333;
+  font-size: 14px;
+  padding: 5px;
+}
+
+/* Style de la "piste" du range */
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 10px;
+  border-radius: 5px;
+  background: #1abc9c;
+}
+
+/* Style du "pouce" du range */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+}
+```
+
+Dans cet exemple, j'ai utilisé des sélecteurs CSS pour cibler différents aspects de l'input range, tels que la piste (`::-webkit-slider-runnable-track`) et le pouce (`::-webkit-slider-thumb`). Vous pouvez personnaliser ces styles selon vos préférences.
+
+N'hésitez pas à ajuster les valeurs des propriétés pour obtenir l'apparence souhaitée. Il est également important de noter que les styles peuvent varier légèrement en fonction du navigateur, donc il est recommandé de tester dans différents navigateurs pour vous assurer de la compatibilité.
+
+Si vous avez des besoins de personnalisation spécifiques, n'hésitez pas à demander !
+
+
+
+
 ## Part One
 
 Il semble que le problème réside dans le fait que le minuteur est basé sur le temps d'exécution de la page. Lorsque vous quittez la page du quiz, le code JavaScript cesse de s'exécuter et le minuteur est mis en pause.
