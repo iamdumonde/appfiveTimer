@@ -47,6 +47,27 @@ input[type="range"]::-webkit-slider-thumb {
 }
 ```
 
+## 
+Je comprends, vous souhaitez simplement changer la couleur de l'effet de remplissage de l'`input` de type `range` en utilisant du CSS. Voici comment vous pouvez le faire :
+
+L'effet de remplissage de l'`input` de type `range` est généralement basé sur la pseudo-classe `::-webkit-slider-runnable-track`. Vous pouvez utiliser cette pseudo-classe pour styliser la piste (la partie remplissable) du `input` range.
+
+Voici un exemple de code CSS pour changer la couleur de l'effet de remplissage :
+
+```css
+/* Stylisation de la piste remplissable */
+input[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #1abc9c 0%, #1abc9c 50%, #ccc 50%, #ccc 100%);
+  border: 1px solid #ccc; /* Bordure de la piste */
+  border-radius: 5px; /* Coins arrondis de la piste */
+  height: 8px; /* Hauteur de la piste */
+}
+```
+
+Dans cet exemple, nous utilisons un dégradé linéaire (`linear-gradient`) pour créer un effet de remplissage qui alterne entre la couleur verte `#1abc9c` et une couleur grise `#ccc`. Vous pouvez ajuster les couleurs et les pourcentages selon vos préférences.
+
+N'hésitez pas à personnaliser ces valeurs en fonction du style que vous souhaitez pour l'effet de remplissage. Si vous avez d'autres questions, n'hésitez pas à demander !
+
 Dans cet exemple, j'ai utilisé des sélecteurs CSS pour cibler différents aspects de l'input range, tels que la piste (`::-webkit-slider-runnable-track`) et le pouce (`::-webkit-slider-thumb`). Vous pouvez personnaliser ces styles selon vos préférences.
 
 N'hésitez pas à ajuster les valeurs des propriétés pour obtenir l'apparence souhaitée. Il est également important de noter que les styles peuvent varier légèrement en fonction du navigateur, donc il est recommandé de tester dans différents navigateurs pour vous assurer de la compatibilité.
