@@ -1,0 +1,57 @@
+Je comprends votre besoin de confirmer la suppression d'un quiz avant de l'exécuter. La méthode window.confirm () que vous avez trouvée sur MDN³ est une bonne option pour afficher une boîte de dialogue avec un message et deux boutons : OK et Annuler. Si l'utilisateur clique sur OK, la méthode renvoie true, sinon elle renvoie false. Vous pouvez utiliser cette valeur de retour pour décider si vous devez appeler votre route delete ou non.
+
+Par exemple, si vous utilisez Inertia pour soumettre votre formulaire de suppression, vous pouvez faire quelque chose comme ceci :
+
+<code>
+<template>
+  <form @submit.prevent="deleteQuiz">
+    <!-- Votre code HTML pour afficher les quizs -->
+    <button type="submit">Supprimer</button>
+  </form>
+</template>
+
+<script>
+import { usePage } from '@inertiajs/inertia-vue3'
+
+export default {
+  setup() {
+    const { props } = usePage()
+
+    function deleteQuiz() {
+      // Afficher la boîte de dialogue de confirmation
+      const confirmed = window.confirm("Êtes-vous sûr de vouloir supprimer ce quiz ?")
+
+      // Si l'utilisateur a confirmé, appeler la route delete
+      if (confirmed) {
+        this.$inertia.delete(`/quizzes/${props.quiz.id}`)
+      }
+    }
+
+    return {
+      props,
+      deleteQuiz
+    }
+  }
+}
+</script>
+</code>
+
+J'espère que cela vous aide à résoudre votre problème. Si vous avez besoin de plus d'informations sur la méthode window.confirm (), vous pouvez consulter la documentation MDN³. Si vous avez besoin de plus d'informations sur les formulaires avec Inertia, vous pouvez consulter le guide Inertia⁴.
+
+Source: Conversation with Bing, 23/10/2023
+(1) Window: Método confirm() - Referencia de la API Web | MDN. https://developer.mozilla.org/es/docs/Web/API/Window/confirm.
+(2) Forms - Inertia.js. https://www.inertiajs.com/forms.
+(3) Validation - Inertia.js. https://inertiajs.com/validation.
+(4) how to create alert confirm box in vue - Stack Overflow. https://stackoverflow.com/questions/54156534/how-to-create-alert-confirm-box-in-vue.
+(5) undefined. https://jsfiddle.net/jacobgoh101/ho86n3mu/4/.
+
+
+
+Vous avez raison, j’ai oublié de mettre un attribut sur le bouton supprimer pour le distinguer des autres boutons. Vous pouvez ajouter un attribut name ou value à votre bouton, par exemple :
+<code> <button type=“submit” name=“delete”>Supprimer</button> </code>
+Ensuite, vous pouvez vérifier la valeur de cet attribut dans votre fonction deleteQuiz, par exemple :
+<code> function deleteQuiz(event) { // Récupérer le bouton qui a déclenché l’événement const button = event.target
+// Vérifier si le bouton a l’attribut name égal à “delete” if (button.name === “delete”) { // Afficher la boîte de dialogue de confirmation const confirmed = window.confirm(“Êtes-vous sûr de vouloir supprimer ce quiz ?”)
+// Si l'utilisateur a confirmé, appeler la route delete
+if (confirmed) {
+  this.$inertia.delete(`/quizzes/${props
