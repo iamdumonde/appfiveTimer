@@ -43,6 +43,37 @@ function doubleNum(number) {
     }
 }
 
+let i = 0;
+
+function fillDivInMovement(){
+    if (i == 0){
+        i = 1;
+        let element = document.getElementById("myBar");
+        let width = 10;
+        let id = setInterval(frame, 10);
+        function frame(){
+            if (width >= 100){
+                clearInterval(id);
+                i = 0;
+            } else {
+                width++;
+                element.style.width = width + "%";
+                element.innerHTML = width + "%";
+            }
+        }
+    }
+}
+
+function fillRange(){
+    const inputRange = document.getElementById('range');
+    inputRange.addEventListener('click', () => {
+        const pourcentage = (inputRange.value - inputRange.min) / (inputRange.max - inputRange.min);
+        const couleur = `linear-gradient(to right, red ${pourcentage * 100}%, #ccc ${pourcentage * 100}%)`;
+        inputRange.style.background = couleur  ;
+    });
+}
+
+
 // onMounted(() => {
 //   const inputRange = document.getElementById('range');
 //   console.log(inputRange);
@@ -58,7 +89,13 @@ function doubleNum(number) {
 </script>
 
 <template>
-    <div class="p-6 flex space-x-2">
+    <div>
+        <div id="myProgress">
+            <div id="myBar">10%</div>
+        </div>
+        <button @click="fillDivInMovement()">Click</button>
+    </div>
+    <div class="p-6 flex space-x-2 element">
         <div class="flex-1">
             <div class="flex justify-between items-center">
                 <div>
@@ -75,7 +112,7 @@ function doubleNum(number) {
                 </span>
             </div>
 
-            <button @click="startQuizz" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Chrono</button>
+            <button @click="startQuizz(); fillRange()" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">Chrono</button>
             <input type="range" name="" id="range"
             v-model="state.inputRangeValue"
             class="w-full custom-input-range"
@@ -84,6 +121,8 @@ function doubleNum(number) {
         </div>
 
     </div>
+
+    
 </template>
 
 <style>
@@ -91,6 +130,14 @@ input[type=range] {
     pointer-events: none;
 }
 
+#myBar {
+    width: 10%;
+    height: 30px;
+    background-color: #04AA6D;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+}
 /* Change la couleur de la piste lors du déplacement du slider */
 /* Ajoute un dégradé si vous le souhaitez */
 /* input[type="range"]::-webkit-slider-runnable-track {
