@@ -1,3 +1,66 @@
+
+
+
+### 
+TPCMN #progress-bar {
+    height: 3px;
+    border: 0px solid #eee;
+    margin-top: 0px;
+    text-align: center;
+}
+
+.TPCMN #progress-percent {
+    width: 0%;
+    background: #78b8ff;
+    height: 100%;
+}
+
+.TPCMN #progress-dot {
+    display: none;
+    float: right;
+    width: 7px;
+    height: 5px;
+    border-radius: 100%;
+    background: #1c75bc;
+    margin-top: -2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### input range
 Pour personnaliser l'apparence d'un élément `input` de type `range`, vous pouvez utiliser des propriétés CSS. Voici quelques-unes des propriétés les plus couramment utilisées pour styliser un input range :
 
